@@ -1,22 +1,16 @@
 ---
 
 
-- hosts: all
+- hosts: myhosts
   become: true
+  tags: ["mainfile","filemain"]
   tasks:
 
-
-  - name: I am updating repository index
+  - name: I am trying to install apache2 package and PHP
     apt:
       update_cache: yes
+      name:
+        - apache2
+        - libapache2-mod-php
+      state: latest
 
-
-  - name: I am trying to install apache2 package
-    apt:
-      name: apache2
-      state: absent
-
-  - name: Adding PHP support for apache
-    apt:
-      name: libapache2-mod-php
-      state: absent
