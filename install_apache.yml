@@ -3,10 +3,10 @@
 
 - hosts: myhosts
   become: true
-  tags: ["mainfile","filemain"]
   tasks:
 
   - name: I am trying to install apache2 package and PHP
+    tags: ["mainfile","web"]
     apt:
       update_cache: yes
       name:
@@ -14,3 +14,11 @@
         - libapache2-mod-php
       state: latest
 
+  - name: copying my html file for my website
+    tags: ["web"]
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
