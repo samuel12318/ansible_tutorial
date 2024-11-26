@@ -1,0 +1,13 @@
+---
+#Starting a program or app on hosts
+
+- name: Main Playbook
+  hosts: myhosts
+  tasks:
+
+  - name: starting VSCode(Ubuntu)
+    tags: web
+    ansible.builtin.command: "code --no-sandbox"
+    when: ansible_distribution == "Ubuntu:
+
+

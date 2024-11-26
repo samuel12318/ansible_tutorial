@@ -1,7 +1,8 @@
 ---
 
 
-- hosts: myhosts
+- name: Main Playbook
+  hosts: myhosts
   become: true
   tasks:
 
@@ -22,3 +23,12 @@
       owner: root
       group: root
       mode: 0644
+
+
+  - name: start apache (Ubuntu)
+    tags: web
+    service:
+      name: apache2
+      state: started
+    when: ansible_distribution == "Ubuntu"
+
